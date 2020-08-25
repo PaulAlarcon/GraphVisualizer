@@ -1,0 +1,89 @@
+		/*boilerplate START*/
+		*, html {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			color: white;
+			font-family: 'Orbitron', sans-serif;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		/*boilerplate END*/
+
+		body{
+			height: 100vh;
+		}
+
+		#container {
+			display: flex;
+            height: 100%;   
+		}
+
+		#inner-container{
+			margin : auto;
+			height : 50%;
+			width: 100%;
+			display : flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		#container h1 {
+			font-size: 8vmax;
+			text-align: center;
+			height : 100%;
+			-webkit-text-stroke: 1px black;
+		}
+
+
+		#box a span{
+			background-color : rgba(darkblue, .5);
+			font-size : 3vmax;
+			padding : 15px;
+			border-radius: 25px;
+            box-shadow: 2px 2px 2px 2px white;
+            &:hover{
+                background-color : rgba(darkblue, .8);
+            }
+        }
+        
+
+		#box{
+			margin : auto;
+			width: 80%;
+			display: flex;
+			justify-content: space-between;
+        }
+        
+        // A star
+
+        #a-star{
+			height : 100%;
+			background: rgb(166,12,226);
+			background: linear-gradient(33deg, rgba(166,12,226,1) 20%, rgba(9,9,121,1) 100%); 
+			overflow : hidden;
+            #title{
+				height : 10%;
+				background-color : rgba(darkblue, .3);
+				display: flex;
+				h1{
+					margin : auto;
+					text-transform: uppercase;				
+					letter-spacing: 1em;
+				}
+            }
+
+            #canvas-container{
+				height: 70%;
+				background-color : rgba(black, .8);
+			}
+			
+			#controls{
+				height : 20%;
+				background-color : rgba(darkcyan, .5);
+			}
+
+        }

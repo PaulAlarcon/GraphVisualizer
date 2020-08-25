@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style/style.css">
+</head>
+
+
+<body>
+
+	<div id="container">
+		<div id="inner-container">
+			<div id="title"><h1>Graph Visualizer</h1></div>
+			<div id="box">
+				<a href="./aStar.html"><span>Maze Generator</span></a>
+				<a href=""><span>Convex Hull</span></a>
+				<a href=""><span>MST</span> </a>
+				<a href=""><span>A*</span></a>
+			</div>
+
+	</div>
+</body>
+
+<script src="./vanta/three.r119.min.js"></script>
+<script src="./vanta/vanta.globe.min.js"></script>
+<script>
+VANTA.GLOBE({
+  el: "body",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00
+})
+</script>
+
+</html>
