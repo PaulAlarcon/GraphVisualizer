@@ -1,36 +1,36 @@
 //Purely inspired by https://www.youtube.com/watch?v=EaZxUCWAjb0&t=98s
 //https://en.wikipedia.org/wiki/A*_search_algorithm
 
-let canvas;
-let ctx;
-let grid;
+var canvas;
+var ctx;
+var grid;
 
-let cols = 30;
-let rows = 30;
+var cols = 30;
+var rows = 30;
 
-let probability = 0.3;
+var probability = 0.3;
 
-let tGrid = [
+var tGrid = [
 	[new Cell(0,0,5),new Cell(1,0,5)],
 	[new Cell(0,1,5),new Cell(1,1,5)]
 ];
 
 console.log(tGrid);
 
-let scale;
+var scale;
 
-let openSet = [];
-let closedSet = [];
+var openSet = [];
+var closedSet = [];
 
-let start ;
-let end ;
+var start ;
+var end ;
 
-let path = [];
+var path = [];
 
-let interval; //interval to stop the loop
+var interval; //interval to stop the loop
 
-let ballX;
-let ballY;
+var ballX;
+var ballY;
 
 
 	setup();
@@ -73,8 +73,8 @@ function draw(){
 }
 
 function solveBruteForce(){
-	let limitX = canvas.width - scale/2;
-	let limitY = canvas.height - scale/2;
+	var limitX = canvas.width - scale/2;
+	var limitY = canvas.height - scale/2;
 
 	drawCircle(ballX, ballY, scale);
 
@@ -96,7 +96,7 @@ function drawCircle(x, y, r){
 }
 
 function setUpCanvas(color){
-	canvas = document.getElementById('canvas');
+	canvas = document.getElementById('myCanvas');
 	ctx = canvas.getContext('2d');
 	ctx.fillStyle = color;
 	ctx.fillRect(0,0, canvas.width, canvas.height);
@@ -116,16 +116,16 @@ function aStarInit(){
 }
 
 function create2DArray(c , r){
-	let arr = new Array(c);
-	for(let i = 0; i < c; i++){
+	var arr = new Array(c);
+	for(var i = 0; i < c; i++){
 		arr[i] = new Array(r);
 	}
 	return arr;
 }
 
 function populateArray(arr , weight, prob){
-	for( let i = 0; i < cols; i++){
-			for(let j = 0; j < rows; j++){
+	for( var i = 0; i < cols; i++){
+			for(var j = 0; j < rows; j++){
 				arr[i][j] = new Cell(i,j,weight,prob);
 			}
 	}
@@ -133,15 +133,15 @@ function populateArray(arr , weight, prob){
 }
 
 function draw2DObjects(grid, color){
-	for(i = 0; i < grid.length; i++ ){
-		for(j = 0; j < grid[i].length; j++){
+	for(let i = 0; i < grid.length; i++ ){
+		for(let j = 0; j < grid[i].length; j++){
 			grid[i][j].draw(color);
 		}
 	}
 }
 
 function drawObjects(arr, color){
-	for(let i = 0; i < arr.length; i++){
+	for(var i = 0; i < arr.length; i++){
 		arr[i].draw(color);
 	}
 }
@@ -153,25 +153,25 @@ function drawRect(x1 , y1 , x2, y2, color){
 	}
 
 function paintNeighbors(a, g, color){
-	let n = Object.values(a.getNeighbors(g));
-	for (let c of n) {
+	var n = Object.values(a.getNeighbors(g));
+	for (var c of n) {
 		if(c)
   	c.draw(color);
 	}
 }
 
 function setNeightbors(graph){
-	for(i = 0; i < graph.length; i++ ){
-		for(j = 0; j < graph[i].length; j++){
+	for(let i = 0; i < graph.length; i++ ){
+		for(let j = 0; j < graph[i].length; j++){
 			graph[i][j].getNeighbors(grid);
 		}
 	}
 }
 
 function heuristic(a,b){
-	let d = 0;
-	// let d = a.taxicabDist(b);
-	// let d = a.euclideanDist(b);
+	var d = 0;
+	// var d = a.taxicabDist(b);
+	// var d = a.euclideanDist(b);
 	return d;
 }
 
@@ -181,7 +181,7 @@ function solveMaze(grid){
 	end.draw("pink");
 
 	if(openSet.length > 0){
-		let current = openSet[getSmallestF(openSet)];
+		var current = openSet[getSmallestF(openSet)];
 
 		if(current == end){
 
@@ -196,12 +196,12 @@ function solveMaze(grid){
 		removeFromArray(openSet, current);
 		closedSet.push(current);
 
-		let neighbors = Object.values(current.neighbors);
-		for (let n of Object.values(neighbors)) {
+		var neighbors = Object.values(current.neighbors);
+		for (var n of Object.values(neighbors)) {
 				if(!closedSet.includes(n) && n && !n.blocked){
-					let tentG = current.g + current.euclideanDist(n);
+					var tentG = current.g + current.euclideanDist(n);
 
-					let newPath = false;
+					var newPath = false;
 					if(openSet.includes(n)){
 						if(tentG < n.g){
 								n.g = tentG;
@@ -224,7 +224,7 @@ function solveMaze(grid){
 				}
 				drawObjects(openSet, "yellow");
 				drawObjects(closedSet, "pink");
-				let temp = current;
+				var temp = current;
 				path = [];
 				path.push(temp);
 				while(temp.camefrom){
@@ -241,8 +241,8 @@ function solveMaze(grid){
 }
 
 function getSmallestF(arr){
-	let ans = 0;
-	for(let i = 1; i < arr.length; i++ ){
+	var ans = 0;
+	for(var i = 1; i < arr.length; i++ ){
 		if(openSet[i].f < arr[ans].f){
 			ans = i;
 		}
@@ -251,7 +251,7 @@ function getSmallestF(arr){
 }
 
 function removeFromArray(arr, a){
-	for(let i = arr.length - 1 ; i >= 0; i--){
+	for(var i = arr.length - 1 ; i >= 0; i--){
 		if(arr[i] === a){
 			arr.splice(i, 1);
 		}

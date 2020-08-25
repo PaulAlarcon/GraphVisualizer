@@ -33,9 +33,9 @@ function Cell(x,y,w,p){
 
 	this.getNeighbors = function(graph){
 		this.neighbors.top = (this.y > 0) ? graph[this.x][this.y - 1] : undefined;
-		this.neighbors.right  = (this.x < graph.length - 1) ? graph[this.x + 1][this.y] : undefined;
-		this.neighbors.bottom = (this.y < graph[0].length - 1) ? graph[this.x][this.y + 1] : undefined;
-		this.neighbors.left   = (this.x > 0) ? graph[this.x - 1][this.y] : undefined ;
+		this.neighbors.right  = (this.x < grid.length - 1) ? grid[this.x + 1][this.y] : undefined;
+		this.neighbors.bottom = (this.y < grid[0].length - 1) ? grid[this.x][this.y + 1] : undefined;
+		this.neighbors.left   = (this.x > 0) ? grid[this.x - 1][this.y] : undefined ;
 		//Corners
 
 		// this.neighbors.topRight = (this.x < grid.length - 1 && this.y < 0) ? grid[this.x + 1][this.y - 1] : undefined ;
@@ -49,10 +49,10 @@ function Cell(x,y,w,p){
 		var left = this.neighbors.left;
 
 
-		this.neighbors.topRight = (this.x < graph.length - 1 && this.y < 0 && (!top.blocked || !right.blocked) ) ? graph[this.x + 1][this.y - 1] : undefined ;
-		this.neighbors.bottomRight = (this.x < graph.length - 1 && this.y < graph[0].length - 1 && (!bottom.blocked || !right.blocked)) ? graph[this.x + 1][this.y + 1] : undefined ;
-		this.neighbors.bottomLeft = (this.x > 0 && this.y > graph[0].length - 1  && !bottom.blocked && !left.blocked) ? graph[this.x - 1][this.y - 1] : undefined ;
-		this.neighbors.topLeft = (this.x > 0 && this.y > 0  && !top.blocked && !left.blocked) ? graph[this.x - 1][this.y - 1] : undefined ;
+		this.neighbors.topRight = (this.x < grid.length - 1 && this.y < 0 && (!top.blocked || !right.blocked) ) ? grid[this.x + 1][this.y - 1] : undefined ;
+		this.neighbors.bottomRight = (this.x < grid.length - 1 && this.y < grid[0].length - 1 && (!bottom.blocked || !right.blocked)) ? grid[this.x + 1][this.y + 1] : undefined ;
+		this.neighbors.bottomLeft = (this.x > 0 && this.y > grid[0].length - 1  && !bottom.blocked && !left.blocked) ? grid[this.x - 1][this.y - 1] : undefined ;
+		this.neighbors.topLeft = (this.x > 0 && this.y > 0  && !top.blocked && !left.blocked) ? grid[this.x - 1][this.y - 1] : undefined ;
 
 		return this.neighbors;
 	}
