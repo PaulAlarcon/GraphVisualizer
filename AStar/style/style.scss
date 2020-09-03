@@ -79,6 +79,11 @@
             #canvas-container{
 				height: 70%;
 				background-color : rgba(black, .8);
+				display: flex;
+				#myCanvas{
+					margin : auto;
+					border : 1px solid white;
+				}
 			}
 			
 			#controls{

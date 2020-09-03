@@ -1,6 +1,0 @@
-
-
-
-const createCanvas = (h, w) => {
-
-}
